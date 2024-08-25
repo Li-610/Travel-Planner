@@ -1,55 +1,48 @@
 import { Layout, Dropdown, Menu, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import LoginPage from "./components/LoginPage";
 import GuestHomePage from "./components/GuestHomePage";
+
 const { Header, Content } = Layout;
+const AuthContext = createContext();
 
-class App extends React.Component {
-  state = {
-    authed: false,
-  };
+const App = () => {
+  const [authed, setAuthed] = useState(false);
 
-  componentDidMount() {
+  useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-    this.setState({
-      authed: authToken !== null,
-    });
-  }
+    setAuthed(authToken !== null);
+  }, []);
 
-  handleLoginSuccess = (token) => {
+  const handleLoginSuccess = (token) => {
     localStorage.setItem("authToken", token);
-    this.setState({
-      authed: true,
-    });
+    setAuthed(true);
   };
 
-  handleLogOut = () => {
+  const handleLogOut = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("asHost");
-    this.setState({
-      authed: false,
-    });
+    setAuthed(false);
   };
 
-  userMenu = (
+  const userMenu = (
     <Menu>
-      <Menu.Item key="logout" onClick={this.handleLogOut}>
+      <Menu.Item key="logout" onClick={handleLogOut}>
         Log Out
       </Menu.Item>
     </Menu>
   );
 
-  renderContent = () => {
-    if (!this.state.authed) {
-      return <LoginPage handleLoginSuccess={this.handleLoginSuccess} />;
+  const renderContent = () => {
+    if (!authed) {
+      return <LoginPage handleLoginSuccess={handleLoginSuccess} />;
     }
-
     return <GuestHomePage />;
   };
 
-  render() {
-    return (
+  return (
+    <AuthContext.Provider value={{ authed, handleLoginSuccess, handleLogOut }}>
       <Layout style={{ height: "100vh" }}>
         <Header
           style={{
@@ -63,36 +56,32 @@ class App extends React.Component {
           <div style={{ fontSize: 30, fontWeight: 800, color: "#55A9F3" }}>
             Travel Planner
           </div>
-          {
-            <div style={{ position: "absolute", right: 20 }}>
-              <Dropdown trigger="click" overlay={this.userMenu}>
-                <Button
-                  icon={<UserOutlined style={{ color: "blue" }} />}
-                  shape="circle"
-                  style={{
-                    backgroundColor: "#c6e5ff",
-                    borderColor: "#c6e5ff",
-                  }}
-                />
-              </Dropdown>
-            </div>
-          }
+          <div style={{ position: "absolute", right: 20 }}>
+            <Dropdown trigger="click" overlay={userMenu}>
+              <Button
+                icon={<UserOutlined style={{ color: "blue" }} />}
+                shape="circle"
+                style={{
+                  backgroundColor: "#c6e5ff",
+                  borderColor: "#c6e5ff",
+                }}
+              />
+            </Dropdown>
+          </div>
         </Header>
         <Content
           style={{
             height: "calc(100% - 64px)",
-            margin: 20,
+            padding: "0 30px",
             overflow: "auto",
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
           }}
         >
-          {this.renderContent()}
+          {renderContent()}
         </Content>
       </Layout>
-    );
-  }
-}
+    </AuthContext.Provider>
+  );
+};
 
 export default App;
