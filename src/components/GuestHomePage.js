@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Button, Layout, message, Modal, DatePicker } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { getStaysById } from "../utils";
-
-import { uploadPlan, deletePlan } from "../utils";
+import MyPlans from "./MyPlans";
+import { deletePlan } from "../utils";
 import CreatePlan from "./CreatePlan";
 
 const { Header, Content } = Layout;
 
-const GuestHomePage = () => {
+const GuestHomePage = (handleShowDetail) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,22 +19,6 @@ const GuestHomePage = () => {
   const handleCreate = () => {
     setModalVisible(true);
   };
-
-  const loadData = async () => {
-    setLoading(true);
-    try {
-      const resp = await getStaysById();
-      setData(resp);
-    } catch (error) {
-      message.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadData();
-  }, []);
 
   return (
     <Layout>
@@ -72,11 +55,7 @@ const GuestHomePage = () => {
       >
         <CreatePlan handleClose={handleClose} />
       </Modal>
-
-      <Content>
-        <p>Toronto, Ontario, Canada</p>
-        <p>2021/04/08 10:21:13</p>
-      </Content>
+      <MyPlans handleShowDetail={handleShowDetail} />
     </Layout>
   );
 };
