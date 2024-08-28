@@ -1,50 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Form, DatePicker, Button, Select, message } from "antd";
+import { Form, Button, Select, DatePicker, message } from "antd";
+import { GetCountries, GetState, GetCity } from "react-country-state-city";
 import { uploadPlan } from "../utils";
 
 const { Option } = Select;
 
-const fetchData = async (url, setData) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    setData(data);
-  } catch (error) {
-    console.error(`Error fetching data from ${url}:`, error);
-  }
-};
-
-function CreatePlan({ handleClose }) {
+const CountryStateCityForm = ({ handleClose }) => {
   const [loading, setLoading] = useState(false);
   const [countries, setCountries] = useState([]);
-  const [provinces, setProvinces] = useState([]);
+  const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedProvince, setSelectedProvince] = useState(null);
-
-  useEffect(() => {
-    fetchData("https://restcountries.com/v3.1/all", (data) => {
-      const countryList = data.map((country) => ({
-        name: country.name.common,
-        code: country.cca2,
-      }));
-      setCountries(countryList);
-    });
-  }, []);
-
-  const handleCountryChange = (value) => {
-    setSelectedCountry(value);
-    fetchData(
-      `https://api.jisuapi.com/area/province?country=${value}`,
-      setProvinces
-    );
-    setCities([]); // Reset cities when country changes
-  };
-
-  const handleProvinceChange = (value) => {
-    setSelectedProvince(value);
-    fetchData(`https://api.jisuapi.com/area/city?province=${value}`, setCities);
-  };
+  const [selectedState, setSelectedState] = useState(null);
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -52,7 +19,7 @@ function CreatePlan({ handleClose }) {
     formData.append("end_date", values.end_date);
     formData.append(
       "start_location",
-      `${values.country}, ${values.province}, ${values.city}`
+      `${values.country}, ${values.state}, ${values.city}`
     );
 
     setLoading(true);
@@ -67,6 +34,30 @@ function CreatePlan({ handleClose }) {
     }
   };
 
+  useEffect(() => {
+    const fetchCountries = async () => {
+      const countryList = await GetCountries();
+      setCountries(countryList);
+    };
+    fetchCountries();
+  }, []);
+
+  const handleCountryChange = async (value) => {
+    setSelectedCountry(value);
+    setSelectedState(null);
+    setCities([]);
+
+    const stateList = await GetState(value);
+    setStates(stateList);
+  };
+
+  const handleStateChange = async (value) => {
+    setSelectedState(value);
+
+    const cityList = await GetCity(selectedCountry, value);
+    setCities(cityList);
+  };
+
   return (
     <Form onFinish={handleSubmit}>
       <Form.Item
@@ -74,27 +65,34 @@ function CreatePlan({ handleClose }) {
         name="country"
         rules={[{ required: true, message: "Please select a country!" }]}
       >
-        <Select placeholder="Select a country" onChange={handleCountryChange}>
+        <Select
+          placeholder="Select a country"
+          onChange={handleCountryChange}
+          allowClear
+          style={{ width: "100%" }}
+        >
           {countries.map((country) => (
-            <Option key={country.code} value={country.code}>
+            <Option key={country.id} value={country.id}>
               {country.name}
             </Option>
           ))}
         </Select>
       </Form.Item>
       <Form.Item
-        label="Province"
-        name="province"
-        rules={[{ required: true, message: "Please select a province!" }]}
+        label="State"
+        name="state"
+        rules={[{ required: true, message: "Please select a state!" }]}
       >
         <Select
-          placeholder="Select a province"
-          onChange={handleProvinceChange}
+          placeholder="Select a state"
+          onChange={handleStateChange}
+          allowClear
           disabled={!selectedCountry}
+          style={{ width: "100%" }}
         >
-          {provinces.map((province) => (
-            <Option key={province.id} value={province.name}>
-              {province.name}
+          {states.map((state) => (
+            <Option key={state.id} value={state.id}>
+              {state.name}
             </Option>
           ))}
         </Select>
@@ -104,9 +102,14 @@ function CreatePlan({ handleClose }) {
         name="city"
         rules={[{ required: true, message: "Please select a city!" }]}
       >
-        <Select placeholder="Select a city" disabled={!selectedProvince}>
+        <Select
+          placeholder="Select a city"
+          allowClear
+          disabled={!selectedState}
+          style={{ width: "100%" }}
+        >
           {cities.map((city) => (
-            <Option key={city.id} value={city.name}>
+            <Option key={city.id} value={city.id}>
               {city.name}
             </Option>
           ))}
@@ -133,6 +136,6 @@ function CreatePlan({ handleClose }) {
       </Form.Item>
     </Form>
   );
-}
+};
 
-export default CreatePlan;
+export default CountryStateCityForm;
