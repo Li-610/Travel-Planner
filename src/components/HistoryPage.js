@@ -7,7 +7,7 @@ import CreatePlan from "./CreatePlan";
 
 const { Header, Content } = Layout;
 
-const HistoryPage = ({ handleShowDetail, setCurContent }) => {
+const HistoryPage = ({ handleShowDetail, setStayDays }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,7 +46,7 @@ const HistoryPage = ({ handleShowDetail, setCurContent }) => {
         onCancel={handleClose}
         footer={null}
       >
-        <CreatePlan handleClose={handleClose} setCurContent={setCurContent} />
+        <CreatePlan handleClose={handleClose} setStayDays={setStayDays} />
       </Modal>
       <MyPlans handleShowDetail={handleShowDetail} />
     </Layout>

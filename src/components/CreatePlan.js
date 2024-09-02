@@ -5,7 +5,7 @@ import { uploadPlan } from "../utils";
 
 const { Option } = Select;
 
-const CountryStateCityForm = ({ handleClose, setCurContent }) => {
+const CountryStateCityForm = ({ handleClose, setStayDays }) => {
   const [loading, setLoading] = useState(false);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -21,7 +21,18 @@ const CountryStateCityForm = ({ handleClose, setCurContent }) => {
       "start_location",
       `${values.country}, ${values.state}, ${values.city}`
     );
-    setCurContent("NewPlanPage");
+
+    // transform to Date type
+    const startDate = new Date(values.start_date);
+    const endDate = new Date(values.end_date);
+    // calculate time difference，get ms
+    const timeDifference = endDate.getTime() - startDate.getTime();
+
+    // change to day difference
+    const dayDifference = timeDifference / (1000 * 3600 * 24);
+    console.log(`[CreatePlan]day difference ${dayDifference}`);
+    setStayDays(dayDifference);
+
     setLoading(true);
     try {
       await uploadPlan(formData);

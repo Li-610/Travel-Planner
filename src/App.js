@@ -10,7 +10,7 @@ const AuthContext = createContext();
 
 const App = () => {
   const [authed, setAuthed] = useState(false);
-  const [curContent, setCurContent] = useState("HistoryPage");
+  const [stayDays, setStayDays] = useState(null);
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
@@ -40,14 +40,10 @@ const App = () => {
     if (authed) {
       return <LoginPage handleLoginSuccess={handleLoginSuccess} />;
     }
-
-    switch (curContent) {
-      case "NewPlanPage":
-        return <NewPlanPage />;
-      case "HistoryPage":
-      default:
-        return <HistoryPage setCurContent={setCurContent} />;
+    if (stayDays != null) {
+      return <NewPlanPage stayDays={stayDays} />;
     }
+    return <HistoryPage setStayDays={setStayDays} />;
   };
 
   return (
@@ -84,7 +80,7 @@ const App = () => {
         <Content
           style={{
             height: "calc(100% - 64px)",
-
+            width: "100%",
             overflow: "auto",
             display: "flex",
           }}

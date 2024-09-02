@@ -14,6 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 .site-layout-background {
   background: #fff;
 }
@@ -23,11 +24,22 @@ code {
   font-weight: 400;
   font-style: normal;
 }
+
 .inputSize {
   height: 40px;
   border-radius: 20px;
   padding: 0 20px;
 }
+
 .ant-btn-primary {
   background-color: #4b68ea;
+}
+
+/* Tab content take up the full height */
+.ant-tabs,
+.ant-tabs-content,
+.ant-tabs-content-holder,
+.ant-tabs-tabpane {
+  height: 100%;
+  width: 100%;
 }
