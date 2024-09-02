@@ -44,7 +44,7 @@ const MyPlans = (handleShowDetail) => {
       loading={loading}
       grid={{ gutter: 16, column: 1 }}
       dataSource={data}
-      style={{ margin: "20px" }}
+      style={{ margin: "20px 0" }}
       renderItem={(item) => (
         <List.Item>
           <Card>
@@ -64,16 +64,13 @@ const MyPlans = (handleShowDetail) => {
                 <strong>End Date:</strong> {item.end_date}
               </div>
               <Button
+                className="inputSize"
                 onClick={handleShowDetail}
-                style={{
-                  backgroundColor: "#007AFF",
-                  color: "white",
-                  borderRadius: "15px",
-                }}
+                type="primary"
               >
                 Details
               </Button>
-              <Button>Delete</Button>
+              <Button className="inputSize"> Delete</Button>
             </div>
           </Card>
         </List.Item>

@@ -57,6 +57,7 @@ const Register = () => {
         visible={modalVisible}
         onCancel={handleClose}
         footer={null}
+        width={400}
       >
         <Form ref={formRef} onFinish={() => console.log("finish form")}>
           <Form.Item
@@ -90,7 +91,7 @@ const Register = () => {
           <Button
             onClick={handleSubmit}
             disabled={loading}
-            shape="round"
+            className="inputSize"
             type="primary"
           >
             Register
@@ -127,7 +128,7 @@ const LoginPage = ({ handleLoginSuccess }) => {
   };
 
   return (
-    <div style={{ width: 500, margin: "20px auto" }}>
+    <div style={{ width: 400, margin: "150px auto" }}>
       <Form ref={formRef} onFinish={() => console.log("finish form")}>
         <Form.Item
           name="username"
@@ -139,6 +140,7 @@ const LoginPage = ({ handleLoginSuccess }) => {
           ]}
         >
           <Input
+            className="inputSize"
             disabled={loading}
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Username"
@@ -154,6 +156,7 @@ const LoginPage = ({ handleLoginSuccess }) => {
           ]}
         >
           <Input.Password
+            className="inputSize"
             disabled={loading}
             prefix={<LockOutlined className="site-form-item-icon" />}
             placeholder="Password"
@@ -165,10 +168,11 @@ const LoginPage = ({ handleLoginSuccess }) => {
       </Form>
 
       <Button
+        className="inputSize"
         onClick={handleLogin}
         disabled={loading}
         type="primary"
-        style={{ borderRadius: "6px", width: 500 }}
+        style={{ width: 400 }}
       >
         Log in
       </Button>

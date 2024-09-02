@@ -7,7 +7,7 @@ import CreatePlan from "./CreatePlan";
 
 const { Header, Content } = Layout;
 
-const GuestHomePage = (handleShowDetail) => {
+const HistoryPage = ({ handleShowDetail, setCurContent }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,7 +21,7 @@ const GuestHomePage = (handleShowDetail) => {
   };
 
   return (
-    <Layout>
+    <Layout style={{ padding: "40px" }}>
       <Header
         style={{
           display: "flex",
@@ -33,14 +33,7 @@ const GuestHomePage = (handleShowDetail) => {
         <div>User Name</div>
         {
           <div>
-            <Button
-              onClick={handleCreate}
-              style={{
-                backgroundColor: "#007AFF",
-                color: "white",
-                borderRadius: "15px",
-              }}
-            >
+            <Button className="inputSize" type="primary" onClick={handleCreate}>
               <PlusOutlined className="site-form-item-icon" />
               Create Plan
             </Button>
@@ -53,11 +46,11 @@ const GuestHomePage = (handleShowDetail) => {
         onCancel={handleClose}
         footer={null}
       >
-        <CreatePlan handleClose={handleClose} />
+        <CreatePlan handleClose={handleClose} setCurContent={setCurContent} />
       </Modal>
       <MyPlans handleShowDetail={handleShowDetail} />
     </Layout>
   );
 };
 
-export default GuestHomePage;
+export default HistoryPage;

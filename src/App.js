@@ -2,13 +2,15 @@ import { Layout, Dropdown, Menu, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import React, { useState, useEffect, useContext, createContext } from "react";
 import LoginPage from "./components/LoginPage";
-import GuestHomePage from "./components/GuestHomePage";
+import HistoryPage from "./components/HistoryPage";
+import NewPlanPage from "./components/NewPlanPage";
 
 const { Header, Content } = Layout;
 const AuthContext = createContext();
 
 const App = () => {
   const [authed, setAuthed] = useState(false);
+  const [curContent, setCurContent] = useState("HistoryPage");
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
@@ -35,10 +37,17 @@ const App = () => {
   );
 
   const renderContent = () => {
-    if (!authed) {
+    if (authed) {
       return <LoginPage handleLoginSuccess={handleLoginSuccess} />;
     }
-    return <GuestHomePage />;
+
+    switch (curContent) {
+      case "NewPlanPage":
+        return <NewPlanPage />;
+      case "HistoryPage":
+      default:
+        return <HistoryPage setCurContent={setCurContent} />;
+    }
   };
 
   return (
@@ -49,11 +58,14 @@ const App = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "transparent",
-            borderBottom: "2px solid #ccc",
+            backgroundImage: "linear-gradient(to right, #00008B, #ADD8E6)",
+            height: "10vh",
           }}
         >
-          <div style={{ fontSize: 30, fontWeight: 800, color: "#55A9F3" }}>
+          <div
+            className="protest-riot-regular"
+            style={{ fontSize: 50, fontWeight: 800, color: "#fff" }}
+          >
             Travel Planner
           </div>
           <div style={{ position: "absolute", right: 20 }}>
@@ -72,7 +84,7 @@ const App = () => {
         <Content
           style={{
             height: "calc(100% - 64px)",
-            padding: "0 30px",
+
             overflow: "auto",
             display: "flex",
           }}

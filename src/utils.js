@@ -31,3 +31,5 @@ export const register = (credential) => {
     }
   });
 };
+
+export const uploadPlan = () => {};

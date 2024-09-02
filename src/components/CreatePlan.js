@@ -5,7 +5,7 @@ import { uploadPlan } from "../utils";
 
 const { Option } = Select;
 
-const CountryStateCityForm = ({ handleClose }) => {
+const CountryStateCityForm = ({ handleClose, setCurContent }) => {
   const [loading, setLoading] = useState(false);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -21,7 +21,7 @@ const CountryStateCityForm = ({ handleClose }) => {
       "start_location",
       `${values.country}, ${values.state}, ${values.city}`
     );
-
+    setCurContent("NewPlanPage");
     setLoading(true);
     try {
       await uploadPlan(formData);
@@ -130,7 +130,12 @@ const CountryStateCityForm = ({ handleClose }) => {
         <DatePicker />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading}>
+        <Button
+          className="inputSize"
+          type="primary"
+          htmlType="submit"
+          loading={loading}
+        >
           Confirm
         </Button>
       </Form.Item>
