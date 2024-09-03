@@ -37,7 +37,7 @@ const App = () => {
   );
 
   const renderContent = () => {
-    if (authed) {
+    if (!authed) {
       return <LoginPage handleLoginSuccess={handleLoginSuccess} />;
     }
     if (stayDays != null) {

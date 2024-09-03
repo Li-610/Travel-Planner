@@ -1,0 +1,260 @@
+[
+  {
+    "name": "The Getty Center",
+    "lat": 34.078,
+    "lng": -118.4741,
+    "url": "https://media.getty.edu/iiif/image/b6210eb6-737b-4…bad8a417c573/359,19,4536,2552/2400,/0/default.jpg"
+  },
+  {
+    "name": "Griffith Observatory",
+    "lat": 34.1184,
+    "lng": -118.3004,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbu7hlRTWPE2ueGQmSTz7Dp5e2vDBLLqRFvA&s"
+  },
+  {
+    "name": "Walt Disney Concert Hall",
+    "lat": 34.0555,
+    "lng": -118.2498,
+    "url": "https://cdnassets.hw.net/b8/cd/20d32da04ce692f17a8…33793939-esto-disney-gehry-hero-tcm20-2098538.jpg"
+  },
+  {
+    "name": "Hollywood Walk of Fame",
+    "lat": 34.1015,
+    "lng": -118.3268,
+    "url": "https://i.guim.co.uk/img/media/172ee17d2490416b28a…ormat&fit=crop&s=e181bb2416323ef141e6e408413dea7c"
+  },
+  {
+    "name": "Universal Studios Hollywood",
+    "lat": 34.1381,
+    "lng": -118.3534,
+    "url": "https://cdn2.nbcuni.com/NBCUniversal/styles/newsro…Id=xHPemJHZWrirMKmbW2OytQvreV35oy0p&itok=3gnKluzC"
+  },
+  {
+    "name": "Santa Monica Pier",
+    "lat": 34.0094,
+    "lng": -118.4973,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSyf8S0xTRYUHL0ckMdEbISr_XheO8M8OMEA&s"
+  },
+  {
+    "name": "Los Angeles County Museum of Art (LACMA)",
+    "lat": 34.0638,
+    "lng": -118.3583,
+    "url": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:21800:21894/full/pct:50/0/default.jpg"
+  },
+  {
+    "name": "Los Angeles Zoo",
+    "lat": 34.1489,
+    "lng": -118.2845,
+    "url": "https://lazoo.org/wp-content/uploads/2023/06/Zoo-Camp-Giraffes-JEP_3389.jpg"
+  },
+  {
+    "name": "The Broad",
+    "lat": 34.0544,
+    "lng": -118.2506,
+    "url": "https://media.cntraveler.com/photos/61f2bf385512e2…road%20Lobby%20-%20Photo%20by%20Mike%20Kelley.jpg"
+  },
+  {
+    "name": "Natural History Museum of Los Angeles County",
+    "lat": 34.0169,
+    "lng": -118.2883,
+    "url": "https://socalmuseums.org/wp-content/uploads/2020/02/CoverImage-Jane-Shim-1080x600.jpg"
+  },
+  {
+    "name": "Petersen Automotive Museum",
+    "lat": 34.0623,
+    "lng": -118.3617,
+    "url": "https://ca-times.brightspotcdn.com/dims4/default/9…a-et-cm-petersen-automotive-museum-review-201-003"
+  },
+  {
+    "name": "Griffith Park",
+    "lat": 34.1366,
+    "lng": -118.2942,
+    "url": "https://www.adventurestudenttravel.com/wp-content/…014/01/LOS-ANGELES-TOURISM-CONVENTION-BOARD-7.png"
+  },
+  {
+    "name": "Hollywood Bowl",
+    "lat": 34.1122,
+    "lng": -118.3391,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75Vjamkjh4g6nNPMMgdVp1SrlZqjWLoSGqg&s"
+  },
+  {
+    "name": "Los Angeles Farmers Market",
+    "lat": 34.0712,
+    "lng": -118.3616,
+    "url": "https://www.discoverlosangeles.com/sites/default/f…ges/2021-07/Santa%20Monica%20Farmers%20Market.JPG"
+  },
+  {
+    "name": "Grand Central Market",
+    "lat": 34.0505,
+    "lng": -118.2487,
+    "url": "https://media.cntraveler.com/photos/61f2bf097b47d1…rand%20Central%20Market_GettyImages-521712564.jpg"
+  },
+  {
+    "name": "Beverly Hills",
+    "lat": 34.0736,
+    "lng": -118.4004,
+    "url": "https://lovebeverlyhills.com/uploads/cache/Image/G…5105/ce9601b674170faa40e7a093f99be5b2f82703bb.jpg"
+  },
+  {
+    "name": "Venice Beach",
+    "lat": 33.985,
+    "lng": -118.4695,
+    "url": "https://drupal8-prod.visitcalifornia.com/sites/dru…tock_RF_638340372_1280x640.jpg.webp?itok=0ROllW9m"
+  },
+  {
+    "name": "Runyon Canyon Park",
+    "lat": 34.1055,
+    "lng": -118.3495,
+    "url": "https://greatruns.com/wp-content/uploads/2016/11/runyon-canyon-albert-valles-flickr0.png"
+  },
+  {
+    "name": "The Original Farmers Market",
+    "lat": 34.0728,
+    "lng": -118.3604,
+    "url": "https://drupal8-prod.visitcalifornia.com/sites/dru…-Farmers-Market-gty-917043346-EditRF_1280x640.jpg"
+  },
+  {
+    "name": "Melrose Avenue",
+    "lat": 34.0831,
+    "lng": -118.3448,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj2gh3eV88gJpNTwfCUY-hSChI7zIXsGw2aw&s"
+  },
+  {
+    "name": "California Science Center",
+    "lat": 34.0166,
+    "lng": -118.2873,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1mbddughyu2D-ziL1WMcP1yVN8C2AKFl4_Q&s"
+  },
+  {
+    "name": "El Matador State Beach",
+    "lat": 34.0392,
+    "lng": -118.8963,
+    "url": "https://www.californiabeaches.com/wp-content/uploa…e-Beach-Malibu-CA-107776112-e1-Large-1000x635.jpg"
+  },
+  {
+    "name": "Santa Monica Mountains National Recreation Area",
+    "lat": 34.1203,
+    "lng": -118.9318,
+    "url": "https://peakvisor.com/img/news/Santa-Monica-Mountains-Topanga-SP.jpg"
+  },
+  {
+    "name": "Descanso Gardens",
+    "lat": 34.202,
+    "lng": -118.2108,
+    "url": "https://www.descansogardens.org/wp-content/uploads/2024/05/Train-2-scaled.jpg"
+  },
+  {
+    "name": "Topanga State Park",
+    "lat": 34.0922,
+    "lng": -118.6102,
+    "url": "https://peakvisor.com/photo/Topanga-State-Park-California-Parker-Mesa.jpg"
+  },
+  {
+    "name": "Los Angeles Arboretum & Botanic Garden",
+    "lat": 34.1449,
+    "lng": -118.0534,
+    "url": "https://ladreaming.com/wp-content/uploads/2018/06/los-angeles-arboretum-botanical-gardens-1.png"
+  },
+  {
+    "name": "Philippe the Original",
+    "lat": 34.0595,
+    "lng": -118.236,
+    "url": "https://californiathroughmylens.com/wp-content/uploads/2013/01/philippe-5-640x427.jpg"
+  },
+  {
+    "name": "Musso & Frank Grill",
+    "lat": 34.1017,
+    "lng": -118.3362,
+    "url": "https://static01.nyt.com/images/2019/08/02/us/02mussocatoday1/02mussocatoday1-superJumbo.jpg"
+  },
+  {
+    "name": "In-N-Out Burger",
+    "lat": 34.0774,
+    "lng": -118.4734,
+    "url": "https://www.nrn.com/sites/nrn.com/files/styles/art…public/consumer-picksin-n-out_3.gif?itok=yzwQh0dn"
+  },
+  {
+    "name": "Guelaguetza",
+    "lat": 34.0474,
+    "lng": -118.2894,
+    "url": "https://mexcellence.com.mx/news/wp-content/uploads/2023/02/guelaguetza-1-min.png"
+  },
+  {
+    "name": "The Greek Theatre",
+    "lat": 34.1196,
+    "lng": -118.2963,
+    "url": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0f/53/7d/e4.jpg"
+  },
+  {
+    "name": "Dorothy Chandler Pavilion",
+    "lat": 34.0581,
+    "lng": -118.2499,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Dorothy_Chandler_Pavilion.jpg"
+  },
+  {
+    "name": "Knott's Berry Farm",
+    "lat": 33.8443,
+    "lng": -118.0,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQakZXIuL7_-e6fxY_NWnbwxOcJoJSqJBwtDQ&s"
+  },
+  {
+    "name": "Six Flags Magic Mountain",
+    "lat": 34.4254,
+    "lng": -118.5971,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP9kDd0m7WVF445M8AkNuN5_L4SxBmuFvelA&s"
+  },
+  {
+    "name": "Los Angeles Memorial Coliseum",
+    "lat": 34.0138,
+    "lng": -118.2878,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BIaXtqAol9N150M3WJ2bfuzjbLRGCTKZVA&s"
+  },
+  {
+    "name": "Los Angeles Union Station",
+    "lat": 34.056,
+    "lng": -118.2361,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2SP7pqi5zTLxwJSsOzoVOTFMsIbMKJXi2NQ&s"
+  },
+  {
+    "name": "Venice Canals",
+    "lat": 33.9847,
+    "lng": -118.4695,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zhH5o_UOCtM6FwRY6ZJFeV4l3EXyHhXlmQ&s"
+  },
+  {
+    "name": "Hollywood Sign",
+    "lat": 34.1341,
+    "lng": -118.3215,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZCd1Dht_KFpehuS4GJ0hR0AxB6FGN5uUXmw&s"
+  },
+  {
+    "name": "Dolby Theatre",
+    "lat": 34.102,
+    "lng": -118.3401,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxwFkW4jMYEilZ2YJDFMF2FPwAjU1XuuM2Mg&s"
+  },
+  {
+    "name": "Sunset Boulevard",
+    "lat": 34.098,
+    "lng": -118.3447,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz31Xm-ecxIUt3mfeu6kgjZnSA0Z5bktHYsA&s"
+  },
+  {
+    "name": "La Brea Tar Pits and Museum",
+    "lat": 34.0638,
+    "lng": -118.3555,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCp3oriGdKASkgNRbMtero-yA09DgJEsFzyw&s"
+  },
+  {
+    "name": "Rodeo Drive",
+    "lat": 34.0695,
+    "lng": -118.4037,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQFgVY05nNsnkUCgEBaEuebdOeI1ZttfYr8Q&s"
+  },
+  {
+    "name": "Los Angeles Chinatown",
+    "lat": 34.0635,
+    "lng": -118.2388,
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLhL_9Ly51GZ20PoY4mDwUjF40hls-YrqhGw&s"
+  }
+]
