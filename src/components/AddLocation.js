@@ -2,8 +2,8 @@ import { Input, Button, Flex } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 
-const AddLocation = ({ dayIdx, dayLists }) => {
-  console.log(dayLists);
+const AddLocation = ({ dayIdx, dayLists, showRoute, setShowRoute }) => {
+  console.log("[AddLocation] dayIdx: " + dayIdx);
   return (
     <Flex justify="center" gap={20} vertical>
       {/* Search Section */}
@@ -35,9 +35,33 @@ const AddLocation = ({ dayIdx, dayLists }) => {
       {/* Day List Section */}
       <div>
         <h2>Day {dayIdx + 1}</h2>
-        {dayLists &&
-          dayLists[dayIdx] &&
-          dayLists[dayIdx].map((item, index) => <Button>{item.name}</Button>)}
+        <Flex wrap gap={"small"}>
+          {dayLists[dayIdx] &&
+            dayLists[dayIdx].map((item, index) => <Button>{item.name}</Button>)}
+        </Flex>
+
+        {dayLists[dayIdx].length >= 2 && (
+          <>
+            <Button
+              type="primary"
+              style={{ marginTop: "20px" }}
+              onClick={() => {
+                setShowRoute(true);
+              }}
+            >
+              Generate Day Plan
+            </Button>
+            <Button
+              type="primary"
+              style={{ marginTop: "20px", marginLeft: "5px" }}
+              onClick={() => {
+                setShowRoute(false);
+              }}
+            >
+              Back
+            </Button>
+          </>
+        )}
       </div>
     </Flex>
   );

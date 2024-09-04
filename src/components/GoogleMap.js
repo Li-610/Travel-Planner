@@ -1,16 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { Button, Flex, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Flex } from "antd";
 
 import {
   APIProvider,
   Map,
   AdvancedMarker,
   InfoWindow,
+  useMapsLibrary,
+  useMap,
 } from "@vis.gl/react-google-maps";
+
 import mockPlaceData from "./mockPlaceData.json";
 
-const GoogleMap = ({ dayIdx, addPlaceToDay }) => {
+const GoogleMap = ({ dayIdx, addPlaceToDay, showRoute, dayLists }) => {
   const defaultCenter = { lat: 34.0522, lng: -118.2437 };
+
+  return (
+    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+      <Map
+        defaultCenter={defaultCenter}
+        defaultZoom={9}
+        mapId={process.env.REACT_APP_MAP_ID}
+      >
+        {showRoute ? (
+          <MapRoute dayIdx={dayIdx} dayLists={dayLists} showRoute={showRoute} />
+        ) : (
+          <MapMarkers dayIdx={dayIdx} addPlaceToDay={addPlaceToDay} />
+        )}
+      </Map>
+    </APIProvider>
+  );
+};
+export default GoogleMap;
+
+// When we need to show markers
+const MapMarkers = ({ dayIdx, addPlaceToDay }) => {
   const [markers, setMakers] = useState(mockPlaceData);
   const [selectedMarker, setSelectedMarker] = useState(null);
 
@@ -19,13 +43,9 @@ const GoogleMap = ({ dayIdx, addPlaceToDay }) => {
   };
 
   return (
-    <APIProvider apiKey={"AIzaSyAwdSJB69sI_568FyMdW6Ppjf_hpVbHAPY"}>
-      <Map
-        defaultCenter={defaultCenter}
-        defaultZoom={9}
-        mapId={"896dddfe63cd3ea"}
-      >
-        {markers.map((item, index) => (
+    <>
+      {markers &&
+        markers.map((item, index) => (
           <AdvancedMarker
             key={index}
             position={{ lat: item.lat, lng: item.lng }}
@@ -33,34 +53,92 @@ const GoogleMap = ({ dayIdx, addPlaceToDay }) => {
             onClick={() => setSelectedMarker(item)}
           />
         ))}
-        {selectedMarker && (
-          <InfoWindow
-            onCloseClick={() => {
-              setSelectedMarker(null);
-            }}
-            position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
-          >
-            <Flex align="center" vertical>
-              <h4>{selectedMarker.name}</h4>
-              <img width={200} alt="example" src={selectedMarker.url} />
-              <Button
-                type="primary"
-                shape="round"
-                size="large"
-                style={{
-                  width: "70px",
-                  marginTop: "20px",
-                  marginBottom: "30px",
-                }}
-                onClick={handleAddBtnClick}
-              >
-                Add
-              </Button>
-            </Flex>
-          </InfoWindow>
-        )}
-      </Map>
-    </APIProvider>
+
+      {selectedMarker && (
+        <InfoWindow
+          onCloseClick={() => {
+            setSelectedMarker(null);
+          }}
+          position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
+        >
+          <Flex align="center" vertical>
+            <h4>{selectedMarker.name}</h4>
+            <img width={200} alt="example" src={selectedMarker.url} />
+            <Button
+              type="primary"
+              shape="round"
+              size="large"
+              style={{
+                width: "70px",
+                marginTop: "20px",
+                marginBottom: "30px",
+              }}
+              onClick={handleAddBtnClick}
+            >
+              Add
+            </Button>
+          </Flex>
+        </InfoWindow>
+      )}
+    </>
   );
 };
-export default GoogleMap;
+
+// When we need to show routes
+const MapRoute = ({ dayIdx, dayLists, showRoute }) => {
+  const map = useMap(); // get map instance
+  const routesLibrary = useMapsLibrary("routes"); //dynamically load route library
+  const [directionsService, setDirectionsService] = useState();
+  const [directionsRenderer, setDirectionsRenderer] = useState();
+  const [routes, setRoutes] = useState([]);
+
+  // This hook is to initialize the Direction service
+  useEffect(() => {
+    if (!routesLibrary || !map) return;
+    // once the map and routesLibrary is set up, create instance of the Direction service
+    setDirectionsService(new routesLibrary.DirectionsService());
+    setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }));
+  }, [routesLibrary, map]);
+
+  // This hook is to generate the route
+  useEffect(() => {
+    if (!directionsService || !directionsRenderer) return;
+
+    // if showRoute is false, clear cur route
+    console.log(showRoute);
+    if (!showRoute) {
+      directionsRenderer.setDirections(null);
+      return;
+    }
+
+    const startPos = {
+      lat: dayLists[dayIdx][0].lat,
+      lng: dayLists[dayIdx][0].lng,
+    };
+    const endPos = {
+      lat: dayLists[dayIdx][dayLists[dayIdx].length - 1].lat,
+      lng: dayLists[dayIdx][dayLists[dayIdx].length - 1].lng,
+    };
+
+    // Extract waypoints (all locations except the first and last)
+    const waypoints = dayLists[dayIdx]
+      .slice(1, -1) // Extract elements from index 1 to the second-to-last
+      .map((point) => ({
+        location: { lat: point.lat, lng: point.lng },
+        stopover: true, // Marks this as a stopover location
+      }));
+
+    directionsService
+      .route({
+        origin: startPos,
+        destination: endPos,
+        travelMode: "DRIVING",
+        waypoints: waypoints,
+      })
+      .then((response) => {
+        directionsRenderer.setDirections(response);
+        setRoutes(response.routes);
+        console.log(`routes: ${routes}`);
+      });
+  }, [directionsService, directionsRenderer, showRoute]);
+};

@@ -9,6 +9,7 @@ const NewPlanPage = ({ stayDays }) => {
     Array.from({ length: stayDays }, () => [])
   );
   const [dayIdx, setDayIdx] = useState(0);
+  const [showRoute, setShowRoute] = useState(false);
 
   // Function to add a place to a specific day's list
   const addPlaceToDay = (dayIdx, place) => {
@@ -30,10 +31,18 @@ const NewPlanPage = ({ stayDays }) => {
   const tabPanes = Array.from({ length: stayDays }, (_, i) => ({
     key: i,
     label: `Day ${i + 1}`,
-    children: <AddLocation dayIdx={i} dayLists={dayLists} />,
+    children: (
+      <AddLocation
+        dayIdx={dayIdx}
+        dayLists={dayLists}
+        showRoute={showRoute}
+        setShowRoute={setShowRoute}
+      />
+    ),
   }));
 
   const onChange = (key) => {
+    console.log("key: " + key);
     setDayIdx(key);
   };
 
@@ -51,6 +60,8 @@ const NewPlanPage = ({ stayDays }) => {
             <GoogleMap
               dayIdx={dayIdx}
               addPlaceToDay={addPlaceToDay}
+              showRoute={showRoute}
+              dayLists={dayLists}
               style={{ height: "100%", width: "100%" }}
             />
           </Col>
