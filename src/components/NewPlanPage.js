@@ -1,7 +1,8 @@
 import { Tabs, Layout, Row, Col } from "antd";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GoogleMap from "./GoogleMap";
 import AddLocation from "./AddLocation";
+import DailyTimeLine from "./DailyTimeline";
 const { Content, Sider } = Layout;
 
 const NewPlanPage = ({ stayDays }) => {
@@ -82,7 +83,7 @@ const NewPlanPage = ({ stayDays }) => {
         width={"300px"}
         style={{ padding: "20px", backgroundColor: "#fff" }}
       >
-        Day List Cart
+        <DailyTimeLine></DailyTimeLine>
       </Sider>
     </Layout>
   );

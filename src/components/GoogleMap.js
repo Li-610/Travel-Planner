@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Flex } from "antd";
-
+import { PlaceAutocompleteClassic } from "./autoComplete/PlaceAutocompleteClassic";
+import { MapHandler } from "./autoComplete/MapHandler";
 import {
   APIProvider,
   Map,
@@ -8,11 +9,14 @@ import {
   InfoWindow,
   useMapsLibrary,
   useMap,
+  ControlPosition,
+  MapControl,
 } from "@vis.gl/react-google-maps";
 
 import mockPlaceData from "./mockPlaceData.json";
 
 const GoogleMap = ({ dayIdx, addPlaceToDay, showRoute, dayLists }) => {
+  const [inputPlace, setInputPlace] = useState(null); // autocomplete state
   const defaultCenter = { lat: 34.0522, lng: -118.2437 };
 
   return (
@@ -28,6 +32,19 @@ const GoogleMap = ({ dayIdx, addPlaceToDay, showRoute, dayLists }) => {
           <MapMarkers dayIdx={dayIdx} addPlaceToDay={addPlaceToDay} />
         )}
       </Map>
+
+      {/* Autocomplete */}
+      <MapControl position={ControlPosition.TOP}>
+        <PlaceAutocompleteClassic onInputPlaceSelect={setInputPlace} />
+      </MapControl>
+      {inputPlace && (
+        <div>
+          <h3>Input Place:</h3>
+          <p>{inputPlace.name}</p>
+          <p>{inputPlace.formatted_address}</p>
+        </div>
+      )}
+      <MapHandler inputPlace={inputPlace} />
     </APIProvider>
   );
 };
@@ -103,12 +120,6 @@ const MapRoute = ({ dayIdx, dayLists, showRoute }) => {
   // This hook is to use directions service
   useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
-
-    // // if showRoute is false, clear cur route
-    // if (!showRoute) {
-    //   directionsRenderer.setDirections(null);
-    //   return;
-    // }
 
     const startPos = {
       lat: dayLists[dayIdx][0].lat,

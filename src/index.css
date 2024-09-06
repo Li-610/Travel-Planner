@@ -43,3 +43,11 @@ code {
   height: 100%;
   width: 100%;
 }
+
+.auto-complete-input {
+  height: 50px;
+  width: 300px;
+  margin-top: 70px;
+  padding: 20px;
+  font-size: 20px;
+}
