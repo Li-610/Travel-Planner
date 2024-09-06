@@ -92,7 +92,7 @@ const MapRoute = ({ dayIdx, dayLists, showRoute }) => {
   const [directionsRenderer, setDirectionsRenderer] = useState();
   const [routes, setRoutes] = useState([]);
 
-  // This hook is to initialize the Direction service
+  // This hook is to initialize the Direction service and renderer
   useEffect(() => {
     if (!routesLibrary || !map) return;
     // once the map and routesLibrary is set up, create instance of the Direction service
@@ -100,16 +100,15 @@ const MapRoute = ({ dayIdx, dayLists, showRoute }) => {
     setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }));
   }, [routesLibrary, map]);
 
-  // This hook is to generate the route
+  // This hook is to use directions service
   useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
 
-    // if showRoute is false, clear cur route
-    console.log(showRoute);
-    if (!showRoute) {
-      directionsRenderer.setDirections(null);
-      return;
-    }
+    // // if showRoute is false, clear cur route
+    // if (!showRoute) {
+    //   directionsRenderer.setDirections(null);
+    //   return;
+    // }
 
     const startPos = {
       lat: dayLists[dayIdx][0].lat,
@@ -140,5 +139,7 @@ const MapRoute = ({ dayIdx, dayLists, showRoute }) => {
         setRoutes(response.routes);
         console.log(`routes: ${routes}`);
       });
+
+    return () => directionsRenderer.setMap(null);
   }, [directionsService, directionsRenderer, showRoute]);
 };

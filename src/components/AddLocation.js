@@ -47,6 +47,8 @@ const AddLocation = ({ dayIdx, dayLists, showRoute, setShowRoute }) => {
               style={{ marginTop: "20px" }}
               onClick={() => {
                 setShowRoute(true);
+                console.log("showRoute set to true");
+                console.log(showRoute);
               }}
             >
               Generate Day Plan
@@ -56,6 +58,8 @@ const AddLocation = ({ dayIdx, dayLists, showRoute, setShowRoute }) => {
               style={{ marginTop: "20px", marginLeft: "5px" }}
               onClick={() => {
                 setShowRoute(false);
+                console.log("showRoute set to false");
+                console.log(showRoute);
               }}
             >
               Back
